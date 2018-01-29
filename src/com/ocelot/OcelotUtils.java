@@ -1,6 +1,7 @@
 package com.ocelot;
 
 import com.ocelot.audio.JukeBox;
+import com.ocelot.utils.LoadingUtils;
 import com.ocelot.utils.Logger;
 import com.ocelot.utils.Logging;
 import com.ocelot.utils.StopwatchManager;
@@ -16,14 +17,26 @@ public class OcelotUtils implements Runnable {
 	private boolean running;
 	@SuppressWarnings("unused")
 	private int updates;
-	private Logger logger = Logging.getLogger("OcelotUtils");
+	private Logger logger = Logging.getLogger(OcelotUtils.class.getSimpleName());
 
 	/**
 	 * Make sure to call this method or the program will be very buggy!
 	 */
 	public static void init(String[] args) {
+		String[] version = LoadingUtils.loadTextToArrayFromURL("https://raw.githubusercontent.com/Ocelot5836/OcelotUtils/master/version.txt");
+		if (version.length > 0)
+			getLogger().info("Running " + OcelotUtils.class.getSimpleName() + " version " + version[0]);
 		JukeBox.create();
 		new OcelotUtils().start();
+	}
+
+	/**
+	 * Does the same thing as init except this is used for debugging.
+	 * 
+	 * @deprecated please use {@link OcelotUtils#init(String[])} instead of this method.
+	 */
+	public static void main(String[] args) {
+		OcelotUtils.init(args);
 	}
 
 	public void start() {
@@ -67,11 +80,6 @@ public class OcelotUtils implements Runnable {
 
 	public void update() {
 		StopwatchManager.update();
-	}
-
-	@Override
-	protected void finalize() throws Throwable {
-		stop();
 	}
 
 	public static Logger getLogger() {
