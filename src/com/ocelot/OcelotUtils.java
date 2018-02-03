@@ -1,6 +1,7 @@
 package com.ocelot;
 
 import com.ocelot.audio.JukeBox;
+import com.ocelot.thread.ThreadPool;
 import com.ocelot.utils.LoadingUtils;
 import com.ocelot.utils.Logger;
 import com.ocelot.utils.Logging;
@@ -17,7 +18,13 @@ public class OcelotUtils implements Runnable {
 	private boolean running;
 	@SuppressWarnings("unused")
 	private int updates;
-	private Logger logger = Logging.getLogger(OcelotUtils.class.getSimpleName());
+	private Logger logger = getLogger();
+	private ThreadPool pool;
+	private static OcelotUtils utils;
+
+	public OcelotUtils() {
+		pool = new ThreadPool(15);
+	}
 
 	/**
 	 * Make sure to call this method or the program will be very buggy!
@@ -27,7 +34,8 @@ public class OcelotUtils implements Runnable {
 		if (version.length > 0)
 			getLogger().info("Running " + OcelotUtils.class.getSimpleName() + " version " + version[0]);
 		JukeBox.create();
-		new OcelotUtils().start();
+		utils = new OcelotUtils();
+		utils.start();
 	}
 
 	/**
@@ -84,5 +92,16 @@ public class OcelotUtils implements Runnable {
 
 	public static Logger getLogger() {
 		return Logging.getLogger("OcelotUtils");
+	}
+
+	public static OcelotUtils getUtils() {
+		return utils;
+	}
+
+	/**
+	 * DO NOT USE THIS. THIS IS FOR OCELOT UTILS AND SHOULD NOT BE USED FOR ANY OTHER PURPOSES!!! If you would like to have multi-threading, see {@link ThreadPool}.
+	 */
+	public void addScheduledTask(Runnable task) {
+		pool.addScheduledTask(task);
 	}
 }

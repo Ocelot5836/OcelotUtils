@@ -49,26 +49,28 @@ public class JukeBox {
 	 *            The name of the sound
 	 */
 	public static void load(String path, String name) {
-		if (!created)
-			throwException();
-		if (clips.get(path) != null)
-			return;
-		try {
-			Clip clip;
-			AudioInputStream ais = AudioSystem.getAudioInputStream(JukeBox.class.getResourceAsStream(path));
-			AudioFormat baseFormat = ais.getFormat();
-			AudioFormat decodeFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, baseFormat.getSampleRate(), 16, baseFormat.getChannels(), baseFormat.getChannels() * 2, baseFormat.getSampleRate(), false);
-			AudioInputStream dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
-			clip = AudioSystem.getClip();
-			clip.open(dais);
-			clips.put(name, clip);
-		} catch (IOException e) {
-			OcelotUtils.getLogger().warning(String.format("File %s at %s not found!", name, path));
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
-		} catch (UnsupportedAudioFileException e) {
-			e.printStackTrace();
-		}
+		OcelotUtils.getUtils().addScheduledTask(() -> {
+			if (!created)
+				throwException();
+			if (clips.get(path) != null)
+				return;
+			try {
+				Clip clip;
+				AudioInputStream ais = AudioSystem.getAudioInputStream(JukeBox.class.getResourceAsStream(path));
+				AudioFormat baseFormat = ais.getFormat();
+				AudioFormat decodeFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, baseFormat.getSampleRate(), 16, baseFormat.getChannels(), baseFormat.getChannels() * 2, baseFormat.getSampleRate(), false);
+				AudioInputStream dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
+				clip = AudioSystem.getClip();
+				clip.open(dais);
+				clips.put(name, clip);
+			} catch (IOException e) {
+				OcelotUtils.getLogger().warning(String.format("File %s at %s not found!", name, path));
+			} catch (LineUnavailableException e) {
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	/**

@@ -12,6 +12,7 @@ import com.ocelot.utils.LoadingUtils;
  */
 public class TextureAtlasSprite {
 
+	private BufferedImage image;
 	private int[] pixels;
 	private int width;
 	private int height;
@@ -24,6 +25,7 @@ public class TextureAtlasSprite {
 	 */
 	public TextureAtlasSprite(BufferedImage image) {
 		this.pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
+		this.image = image;
 		this.width = image.getWidth();
 		this.height = image.getHeight();
 	}
@@ -42,12 +44,6 @@ public class TextureAtlasSprite {
 	 * @return The image converted from RGB pixel data back into a buffered image
 	 */
 	public BufferedImage getImage() {
-		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				image.setRGB(x, y, pixels[x + y * width]);
-			}
-		}
 		return image;
 	}
 
