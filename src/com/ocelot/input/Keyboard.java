@@ -4,10 +4,21 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.JFrame;
 
+import com.ocelot.OcelotUtils;
+
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * This class can be called as a static class for checking all the key events. It has a focus listener so the keys can be disabled when the focus is lost.
  * 
  * @author Ocelot5836
@@ -19,15 +30,22 @@ public class Keyboard implements KeyListener, FocusListener {
 	public static final Keyboard INSTANCE = new Keyboard();
 
 	private static boolean[] keys;
+	private static boolean[] keysCheck;
+	private static Map<Integer, List<Runnable>> pressedEvents;
+	private static Map<Integer, List<Runnable>> releasedEvents;
 
 	/**
 	 * Initializes all the keys.
 	 */
 	public Keyboard() {
 		keys = new boolean[KeyEvent.RESERVED_ID_MAX];
+		keysCheck = new boolean[keys.length];
 		for (int i = 0; i < keys.length; i++) {
 			keys[i] = false;
+			keysCheck[i] = false;
 		}
+		pressedEvents = new HashMap<Integer, List<Runnable>>();
+		releasedEvents = new HashMap<Integer, List<Runnable>>();
 	}
 
 	/**
@@ -41,6 +59,30 @@ public class Keyboard implements KeyListener, FocusListener {
 		return keys[key];
 	}
 
+	/**
+	 * Adds a listener to be called when the specified key is pressed.
+	 * 
+	 * @param listener
+	 *            The code to be called
+	 * @param key
+	 *            The key that has to be pressed to activate the listener
+	 */
+	public static void addKeyPressedListener(Runnable listener, int key) {
+		pressedEvents.put(key, Arrays.asList(new Runnable[] { listener }));
+	}
+
+	/**
+	 * Adds a listener to be called when the specified key is released.
+	 * 
+	 * @param listener
+	 *            The code to be called
+	 * @param key
+	 *            The key that has to be released to activate the listener
+	 */
+	public static void addKeyReleasedListener(Runnable listener, int key) {
+		releasedEvents.put(key, Arrays.asList(new Runnable[] { listener }));
+	}
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 
@@ -48,12 +90,30 @@ public class Keyboard implements KeyListener, FocusListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		keys[e.getKeyCode()] = true;
+		int keyCode = e.getKeyCode();
+		keys[keyCode] = true;
+		if (!keysCheck[keyCode]) {
+			if (pressedEvents.containsKey(keyCode)) {
+				List<Runnable> events = pressedEvents.get(keyCode);
+				for (Runnable event : events) {
+					OcelotUtils.getUtils().addScheduledTask(event);
+				}
+			}
+			keysCheck[keyCode] = true;
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		keys[e.getKeyCode()] = false;
+		int keyCode = e.getKeyCode();
+		keys[keyCode] = false;
+		if (releasedEvents.containsKey(keyCode)) {
+			List<Runnable> events = releasedEvents.get(keyCode);
+			for (Runnable event : events) {
+				OcelotUtils.getUtils().addScheduledTask(event);
+			}
+			keysCheck[keyCode] = false;
+		}
 	}
 
 	@Override

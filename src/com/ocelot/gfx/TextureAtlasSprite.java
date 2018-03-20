@@ -5,6 +5,11 @@ import java.awt.image.BufferedImage;
 import com.ocelot.utils.LoadingUtils;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * Represents a singe image out of a texture atlas.
  * 
  * @author Ocelot5836

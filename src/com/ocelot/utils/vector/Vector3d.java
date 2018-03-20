@@ -1,12 +1,17 @@
 package com.ocelot.utils.vector;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * This class is a vector that holds 3 doubles.
  * 
  * @author Ocelot5836
  * @since 1.4.6
  */
-public class Vector3d extends Vector {
+public class Vector3d extends Vector3<Double, Double, Double> {
 
 	private double x;
 	private double y;
@@ -16,7 +21,7 @@ public class Vector3d extends Vector {
 	 * Creates a new blank vector with the positions of 0, 0.
 	 */
 	public Vector3d() {
-		set(0, 0, 0);
+		set(0.0d, 0.0d, 0.0d);
 	}
 
 	/**
@@ -35,10 +40,17 @@ public class Vector3d extends Vector {
 		set(vector.x, vector.y, vector.z);
 	}
 
-	public Vector3d set(double x, double y, double z) {
+	@Override
+	public Vector3d set(Double x, Double y, Double z) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		return this;
+	}
+
+	public Vector3d set(Vector3d vector) {
+		this.x = vector.x;
+		this.y = vector.y;
 		return this;
 	}
 
@@ -49,10 +61,26 @@ public class Vector3d extends Vector {
 		return this;
 	}
 
+	@Override
+	public Vector3d add(Double x, Double y, Double z) {
+		this.x += x;
+		this.y += y;
+		this.z += z;
+		return this;
+	}
+
 	public Vector3d subtract(Vector3d vector) {
 		this.x -= vector.x;
 		this.y -= vector.y;
 		this.z -= vector.z;
+		return this;
+	}
+
+	@Override
+	public Vector3d subtract(Double x, Double y, Double z) {
+		this.x -= x;
+		this.y -= y;
+		this.z -= z;
 		return this;
 	}
 

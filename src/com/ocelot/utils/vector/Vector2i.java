@@ -1,12 +1,17 @@
 package com.ocelot.utils.vector;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * This class is a vector that holds 2 integers.
  * 
  * @author Ocelot5836
  * @since 1.4.6
  */
-public class Vector2i extends Vector {
+public class Vector2i extends Vector2<Integer, Integer> {
 
 	private int x;
 	private int y;
@@ -34,9 +39,16 @@ public class Vector2i extends Vector {
 		set(vector.x, vector.y);
 	}
 
-	public Vector2i set(int x, int y) {
+	@Override
+	public Vector2i set(Integer x, Integer y) {
 		this.x = x;
 		this.y = y;
+		return this;
+	}
+	
+	public Vector2i set(Vector2i vector) {
+		this.x = vector.x;
+		this.y = vector.y;
 		return this;
 	}
 
@@ -46,9 +58,23 @@ public class Vector2i extends Vector {
 		return this;
 	}
 
+	@Override
+	public Vector2i add(Integer x, Integer y) {
+		this.x += x;
+		this.y += y;
+		return this;
+	}
+
 	public Vector2i subtract(Vector2i vector) {
 		this.x -= vector.x;
 		this.y -= vector.y;
+		return this;
+	}
+
+	@Override
+	public Vector2i subtract(Integer x, Integer y) {
+		this.x -= x;
+		this.y -= y;
 		return this;
 	}
 

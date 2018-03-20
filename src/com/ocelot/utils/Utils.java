@@ -9,13 +9,18 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * This class holds some random useful methods.
  * 
  * @author Ocelot5836
  * @since 1.3.3
  */
 public class Utils {
-	
+
 	/**
 	 * Sets the mouse position to the specified point.
 	 * 

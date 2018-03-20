@@ -5,6 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * Sends text into the console with the time, name, and logging level. This is a very simple way to print text and can be improved in many ways.
  * 
  * @author Ocelot5836

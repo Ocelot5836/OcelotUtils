@@ -1,6 +1,11 @@
 package com.ocelot.utils;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * Creates a stopwatch that will time the amount of time until it stops.
  * 
  * @author Ocelot5836

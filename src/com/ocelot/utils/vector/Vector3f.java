@@ -1,12 +1,17 @@
 package com.ocelot.utils.vector;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * This class is a vector that holds 3 floats.
  * 
  * @author Ocelot5836
  * @since 1.4.6
  */
-public class Vector3f extends Vector  {
+public class Vector3f extends Vector3<Float, Float, Float> {
 
 	private float x;
 	private float y;
@@ -16,7 +21,7 @@ public class Vector3f extends Vector  {
 	 * Creates a new blank vector with the positions of 0, 0.
 	 */
 	public Vector3f() {
-		set(0, 0, 0);
+		set(0.0f, 0.0f, 0.0f);
 	}
 
 	/**
@@ -35,10 +40,17 @@ public class Vector3f extends Vector  {
 		set(vector.x, vector.y, vector.z);
 	}
 
-	public Vector3f set(float x, float y, float z) {
+	@Override
+	public Vector3f set(Float x, Float y, Float z) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		return this;
+	}
+
+	public Vector3f set(Vector3f vector) {
+		this.x = vector.x;
+		this.y = vector.y;
 		return this;
 	}
 
@@ -49,10 +61,26 @@ public class Vector3f extends Vector  {
 		return this;
 	}
 
+	@Override
+	public Vector3f add(Float x, Float y, Float z) {
+		this.x += x;
+		this.y += y;
+		this.z += z;
+		return this;
+	}
+
 	public Vector3f subtract(Vector3f vector) {
 		this.x -= vector.x;
 		this.y -= vector.y;
 		this.z -= vector.z;
+		return this;
+	}
+
+	@Override
+	public Vector3f subtract(Float x, Float y, Float z) {
+		this.x -= x;
+		this.y -= y;
+		this.z -= z;
 		return this;
 	}
 
@@ -81,7 +109,7 @@ public class Vector3f extends Vector  {
 	public void setZ(float z) {
 		this.z = z;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Vector3f) {

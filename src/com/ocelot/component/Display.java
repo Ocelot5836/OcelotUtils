@@ -10,6 +10,11 @@ import com.ocelot.input.Keyboard;
 import com.ocelot.input.Mouse;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * Creates a new JFrame with the basic components. The frame can be easily accessed and modified.
  * 
  * @author Ocelot5836

@@ -1,12 +1,17 @@
 package com.ocelot.utils.vector;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * This class is a vector that holds 2 floats.
  * 
  * @author Ocelot5836
  * @since 1.4.6
  */
-public class Vector2f extends Vector {
+public class Vector2f extends Vector2<Float, Float> {
 
 	private float x;
 	private float y;
@@ -15,7 +20,7 @@ public class Vector2f extends Vector {
 	 * Creates a new blank vector with the positions of 0, 0.
 	 */
 	public Vector2f() {
-		set(0, 0);
+		set(0.0f, 0.0f);
 	}
 
 	/**
@@ -26,15 +31,22 @@ public class Vector2f extends Vector {
 	 * @param y
 	 *            The y position
 	 */
-	public Vector2f(float x, float y) {
+	public Vector2f(Float x, Float y) {
 		set(x, y);
 	}
 
 	public Vector2f(Vector2f vector) {
 		set(vector.x, vector.y);
 	}
+	
+	public Vector2f set(Vector2f vector) {
+		this.x = vector.x;
+		this.y = vector.y;
+		return this;
+	}
 
-	public Vector2f set(float x, float y) {
+	@Override
+	public Vector2f set(Float x, Float y) {
 		this.x = x;
 		this.y = y;
 		return this;
@@ -46,9 +58,23 @@ public class Vector2f extends Vector {
 		return this;
 	}
 
+	@Override
+	public Vector2f add(Float x, Float y) {
+		this.x += x;
+		this.y += y;
+		return this;
+	}
+
 	public Vector2f subtract(Vector2f vector) {
 		this.x -= vector.x;
 		this.y -= vector.y;
+		return this;
+	}
+
+	@Override
+	public Vector2f subtract(Float x, Float y) {
+		this.x -= x;
+		this.y -= y;
 		return this;
 	}
 

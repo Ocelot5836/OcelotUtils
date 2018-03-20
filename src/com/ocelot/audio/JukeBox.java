@@ -14,7 +14,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import com.ocelot.OcelotUtils;
 
 /**
- * This class has the capability to load and play mp3 files. Throws an exception if {@link #create()} is not called.
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
+ * This class has the capability to load and play wav files. Requires extra libraries to load and run mp3 files or mp4. Throws an exception if {@link JukeBox#create()} is not called.
  * 
  * @author Ocelot5836
  * @since 1.3
@@ -29,7 +34,7 @@ public class JukeBox {
 	private static boolean created = false;
 
 	/**
-	 * initializes the {@link JukeBox} variables
+	 * initializes the {@link JukeBox} variables and allows usage of the jukebox.
 	 */
 	public static void create() {
 		if (!isCreated()) {
@@ -43,6 +48,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Loads an audio file into memory.
+	 * 
 	 * @param path
 	 *            The file path
 	 * @param name
@@ -74,7 +81,7 @@ public class JukeBox {
 	}
 
 	/**
-	 * stops all the sounds playing
+	 * Stops all the sounds playing
 	 */
 	public static void stopAllSounds() {
 		if (!created)
@@ -84,6 +91,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Plays a specific audio file.
+	 * 
 	 * @param file
 	 *            The clip to play
 	 */
@@ -94,6 +103,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Plays an audio file at the specified location.
+	 * 
 	 * @param file
 	 *            The clip to play
 	 * @param gap
@@ -119,6 +130,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Sets the volume for a music clip.
+	 * 
 	 * @param clip
 	 *            The clip
 	 * @param volume
@@ -135,6 +148,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Stops the specified clip form playing.
+	 * 
 	 * @param clip
 	 *            The clip to stop
 	 */
@@ -148,6 +163,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Resumes a clip of it is not already running.
+	 * 
 	 * @param clip
 	 *            The clip to be resumed
 	 */
@@ -162,6 +179,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Loops a specific clip.
+	 * 
 	 * @param clip
 	 *            The clip to loop
 	 */
@@ -172,6 +191,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Loops a specific clip at the specified frame.
+	 * 
 	 * @param clip
 	 *            The clip
 	 * @param frame
@@ -184,6 +205,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Loops a specific clip at the specified start and end point.
+	 * 
 	 * @param clip
 	 *            The clip
 	 * @param start
@@ -198,6 +221,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Loops a specific clip at the specified frame, start, and end point.
+	 * 
 	 * @param clip
 	 *            The clip
 	 * @param frame
@@ -219,6 +244,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Sets the clip position.
+	 * 
 	 * @param clip
 	 *            The clip
 	 * @param frame
@@ -231,6 +258,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Gets the length of the frames in the clip.
+	 * 
 	 * @param clip
 	 *            The clip to get the frames from
 	 * @return The frames
@@ -242,6 +271,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Gets the position of the clip.
+	 * 
 	 * @param clip
 	 *            The clip to get the position
 	 * @return The frame position
@@ -253,6 +284,8 @@ public class JukeBox {
 	}
 
 	/**
+	 * Stops and closes a clip.
+	 * 
 	 * @param clip
 	 *            The clip to close/remove
 	 */
@@ -263,14 +296,17 @@ public class JukeBox {
 		clips.get(clip).close();
 	}
 
-	private static void throwException() {
-		throw new RuntimeException("Jukebox was trying to be used before it was created!");
-	}
-
 	/**
 	 * @return Whether or not the jukebox has been created yet
 	 */
 	public static boolean isCreated() {
 		return created;
+	}
+
+	/**
+	 * Throws an exception. Used for this class only
+	 */
+	private static void throwException() {
+		throw new RuntimeException("Jukebox was trying to be used before it was created!");
 	}
 }

@@ -4,9 +4,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * Allows the ability to have multi-threading. Runs multiple tasks at the same time.
  * 
  * @author Ocelot5836
+ * @since 1.5.4
  */
 public class ThreadPool extends ThreadGroup {
 

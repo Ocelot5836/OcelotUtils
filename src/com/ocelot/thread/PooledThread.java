@@ -1,5 +1,16 @@
 package com.ocelot.thread;
 
+/**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
+ * A thread that is run in a thread pool.
+ * 
+ * @author Ocelot5836
+ * @since 1.5.4
+ */
 class PooledThread extends Thread {
 
 	private static IdAssigner threadId = new IdAssigner(1);

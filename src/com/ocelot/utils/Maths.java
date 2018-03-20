@@ -8,6 +8,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * This class holds methods of math that are not java's {@link Math} class.
  * 
  * @author Ocelot5836

@@ -14,6 +14,11 @@ import com.ocelot.utils.LoadingUtils;
 import com.ocelot.utils.Stopwatch;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * Represents a basic sheet made of texture atlas sprites.
  * 
  * @author Ocelot5836
@@ -85,63 +90,61 @@ public class TextureAtlas {
 	 * Stitches the image together to populate the stitched image texture.
 	 */
 	public TextureAtlas stitch() {
-		OcelotUtils.getUtils().addScheduledTask(() -> {
-			OcelotUtils.getLogger().info("Stitching Atlas:" + name);
-			Stopwatch watch = new Stopwatch();
-			watch.start();
+		OcelotUtils.getLogger().info("Stitching Atlas:" + name);
+		Stopwatch watch = new Stopwatch();
+		watch.start();
 
-			try {
-				int rows = width / spriteWidth;
-				int cols = height / spriteHeight;
-				int chunks = rows * cols;
+		try {
+			int rows = width / spriteWidth;
+			int cols = height / spriteHeight;
+			int chunks = rows * cols;
 
-				int type;
+			int type;
 
-				BufferedImage[] buffImages = new BufferedImage[chunks];
-				int imgi = 0;
-				for (Entry<String, TextureAtlasSprite> sprite : sprites.entrySet()) {
-					buffImages[imgi] = sprite.getValue().getImage().getSubimage(0, 0, spriteWidth, spriteHeight);
-					imgi++;
-				}
-
-				if (imgi < buffImages.length) {
-					for (int i = imgi; i < buffImages.length; i++) {
-						buffImages[i] = empty.getImage();
-					}
-				}
-
-				type = buffImages[0].getType();
-
-				BufferedImage finalImg = new BufferedImage(spriteWidth * cols, spriteHeight * rows, type);
-
-				int num = 0;
-				for (int i = 0; i < rows; i++) {
-					for (int j = 0; j < cols; j++) {
-						finalImg.createGraphics().drawImage(buffImages[num], spriteWidth * j, spriteHeight * i, null);
-						num++;
-					}
-				}
-
-				stitchedTexture = finalImg;
-				numTimesStitched++;
-				if (debug) {
-					File folder = new File("debug/");
-					if (folder.mkdirs()) {
-					} else {
-					}
-
-					ImageIO.write(finalImg, "png", new File("debug/" + name + ".png"));
-				}
-			} catch (IOException e) {
-				OcelotUtils.getLogger().warning("Could not complete texture stitch!");
-				e.printStackTrace();
-				watch.delete();
+			BufferedImage[] buffImages = new BufferedImage[chunks];
+			int imgi = 0;
+			for (Entry<String, TextureAtlasSprite> sprite : sprites.entrySet()) {
+				buffImages[imgi] = sprite.getValue().getImage().getSubimage(0, 0, spriteWidth, spriteHeight);
+				imgi++;
 			}
 
-			watch.stop();
-			OcelotUtils.getLogger().info("Completed Stitching in " + watch.getTime() + "ms");
+			if (imgi < buffImages.length) {
+				for (int i = imgi; i < buffImages.length; i++) {
+					buffImages[i] = empty.getImage();
+				}
+			}
+
+			type = buffImages[0].getType();
+
+			BufferedImage finalImg = new BufferedImage(spriteWidth * cols, spriteHeight * rows, type);
+
+			int num = 0;
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < cols; j++) {
+					finalImg.createGraphics().drawImage(buffImages[num], spriteWidth * j, spriteHeight * i, null);
+					num++;
+				}
+			}
+
+			stitchedTexture = finalImg;
+			numTimesStitched++;
+			if (debug) {
+				File folder = new File("debug/");
+				if (folder.mkdirs()) {
+				} else {
+				}
+
+				ImageIO.write(finalImg, "png", new File("debug/" + name + ".png"));
+			}
+		} catch (IOException e) {
+			OcelotUtils.getLogger().warning("Could not complete texture stitch!");
+			e.printStackTrace();
 			watch.delete();
-		});
+		}
+
+		watch.stop();
+		OcelotUtils.getLogger().info("Completed Stitching in " + watch.getTime() + "ms");
+		watch.delete();
 		return this;
 	}
 

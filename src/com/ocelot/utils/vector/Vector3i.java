@@ -1,12 +1,17 @@
 package com.ocelot.utils.vector;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * This class is a vector that holds 3 integers.
  * 
  * @author Ocelot5836
  * @since 1.4.6
  */
-public class Vector3i extends Vector  {
+public class Vector3i extends Vector3<Integer, Integer, Integer> {
 
 	private int x;
 	private int y;
@@ -35,10 +40,17 @@ public class Vector3i extends Vector  {
 		set(vector.x, vector.y, vector.z);
 	}
 
-	public Vector3i set(int x, int y, int z) {
+	@Override
+	public Vector3i set(Integer x, Integer y, Integer z) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		return this;
+	}
+
+	public Vector3i set(Vector3i vector) {
+		this.x = vector.x;
+		this.y = vector.y;
 		return this;
 	}
 
@@ -49,10 +61,26 @@ public class Vector3i extends Vector  {
 		return this;
 	}
 
+	@Override
+	public Vector3i add(Integer x, Integer y, Integer z) {
+		this.x += x;
+		this.y += y;
+		this.z += z;
+		return this;
+	}
+
 	public Vector3i subtract(Vector3i vector) {
 		this.x -= vector.x;
 		this.y -= vector.y;
 		this.z -= vector.z;
+		return this;
+	}
+
+	@Override
+	public Vector3i subtract(Integer x, Integer y, Integer z) {
+		this.x -= x;
+		this.y -= y;
+		this.z -= z;
 		return this;
 	}
 
@@ -81,7 +109,7 @@ public class Vector3i extends Vector  {
 	public void setZ(int z) {
 		this.z = z;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Vector3i) {

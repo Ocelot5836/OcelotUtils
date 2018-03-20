@@ -13,13 +13,18 @@ import javax.imageio.ImageIO;
 import com.ocelot.OcelotUtils;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * This class can load images and text easily instead of having to do it manually. It also saves images that are loaded that can be easily accessed by
  * 
  * @author Ocelot5836
  * @since 1.0
  */
 public class LoadingUtils {
-	
+
 	/** The list of images loaded into memory. */
 	private static final Map<String, BufferedImage> LOADED_IMAGES = new HashMap<String, BufferedImage>();
 
@@ -31,8 +36,8 @@ public class LoadingUtils {
 	public static final BufferedImage EMPTY_IMAGE32 = createMissingImage(32, 32);
 	/** The default empty image that is 64x64 */
 	public static final BufferedImage EMPTY_IMAGE64 = createMissingImage(64, 64);
-
-	private static BufferedImage defaultEmptyImage = EMPTY_IMAGE16;
+	/** The image that is used in the place of an image if an image can not be found */
+	public static BufferedImage defaultEmptyImage = EMPTY_IMAGE16;
 
 	/**
 	 * Loads text into an array from the resources.
@@ -187,6 +192,7 @@ public class LoadingUtils {
 	 * 
 	 * @param defaultEmptyImage
 	 *            The new image to set it to
+	 * @deprecated This is redundant. The value of {@link #defaultEmptyImage} is public so just modify it directly.
 	 */
 	public static void setDefaultEmptyImage(BufferedImage image) {
 		LoadingUtils.defaultEmptyImage = image;

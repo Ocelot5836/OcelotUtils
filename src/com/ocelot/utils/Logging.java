@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * Does some basic handling for loggers.
  * 
  * @author Ocelot5836

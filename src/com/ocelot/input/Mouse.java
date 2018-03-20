@@ -11,6 +11,11 @@ import java.awt.event.MouseWheelListener;
 import javax.swing.JFrame;
 
 /**
+ * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
+ * 
+ * <br>
+ * </br>
+ * 
  * This class can be used to handle any type of mouse event.
  * 
  * @author Ocelot5836
