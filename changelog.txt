@@ -1,0 +1,97 @@
+1.0
+-initial creation
+
+1.1
+-fixed crash where loggers would return null
+
+1.2.0
+-added a mouse and keyboard listener class
+
+1.3.0
+-changed some method names
+-added some more documentation
+-added the JukeBox class
+
+1.3.1
+-small changes
+
+1.3.2
+-fixed some bugs
+-small changes
+-added more logger support
+
+1.3.3
+-added some more utility methods
+
+1.4.0
+-redesigned the LoadingUtils class to be more flexible
+
+1.4.1
+-overhauled the loading utils class to save the images into memory
+-added an easy way to save and load images in loading utils
+-fixed some spelling errors
+-added some more useful methods
+
+1.4.2
+-added some changes to some files
+-fixed some small bugs
+
+1.4.3
+-added the mouse rotation to the Mouse class
+-added the Display class
+
+1.4.4
+-added the Maths class
+
+1.4.5
+-added the stopwatch class
+-fixed some big bugs
+-added some more functionality to display class
+
+1.4.6
+-added vectors
+
+1.4.7
+-redid the loggers
+-fixed some small bugs
+-deprecated the old method of getting the logger
+
+1.4.8
+-made vectors show values when turned into a string
+
+1.4.9
+-added the main class that handles all of the utilities by itself
+-added more documentation
+-added the @since documentation
+
+1.5.0
+-added the texture atlas class
+-added the texture atlas sprite class
+-made the stop watch class easier to use
+-added some documentation
+
+1.5.1
+-removed the Stopwatch class
+-renamed the Main class to OcelotUtils
+-renamed `Main#main(String[] args)` to `Main#init(String[] args)`
+-improved the texture atlas class
+
+1.5.2
+-fixed the texture atlas class and added some new methods
+
+1.5.3
+-added more things to the texture atlas class
+-added multi threading
+
+1.5.4
+-fixed jukebox loading
+
+1.5.5
+-added more features to Keyboard class
+-fixed utils not updating or running correctly
+-added more documentation to all classes
+
+1.5.6
+-removed Vector and replaced with Vector2 and Vector3 which both support different amounts of variables
+-added more documentation
+-added new methods to vectors
