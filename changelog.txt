@@ -95,3 +95,9 @@
 -removed Vector and replaced with Vector2 and Vector3 which both support different amounts of variables
 -added more documentation
 -added new methods to vectors
+
+1.5.7
+-added some reminders
+-fixed the logger
+-fixed the vectors
+-fixed some documentation
