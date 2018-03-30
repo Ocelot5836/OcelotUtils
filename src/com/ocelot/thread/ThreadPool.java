@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ThreadPool extends ThreadGroup {
 
-	private static IdAssigner poolId = new IdAssigner(1);
+	private static int threadId = 1;
 
 	private List<Runnable> taskQueue;
 	private boolean alive;
@@ -26,7 +26,7 @@ public class ThreadPool extends ThreadGroup {
 	 *            The number of tasks that can be ran at a single time
 	 */
 	public ThreadPool(int numThreads) {
-		super("ThreadPool-" + poolId.next());
+		super("ThreadPool-" + threadId++);
 		this.setDaemon(true);
 		this.taskQueue = new LinkedList<Runnable>();
 		this.alive = true;

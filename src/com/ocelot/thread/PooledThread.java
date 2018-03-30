@@ -13,12 +13,12 @@ package com.ocelot.thread;
  */
 class PooledThread extends Thread {
 
-	private static IdAssigner threadId = new IdAssigner(1);
+	private static int threadId = 1;
 
 	private ThreadPool pool;
 
 	public PooledThread(ThreadPool pool) {
-		super(pool, "PooledThread-" + threadId.next());
+		super(pool, "PooledThread-" + threadId++);
 		this.pool = pool;
 	}
 
