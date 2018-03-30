@@ -12,9 +12,12 @@ package com.ocelot;
  */
 public class OcelotUtilsInfo {
 
-	/**The name of the utils.*/
+	// TODO remove Logger.getLogger(String)
+	// TODO remove LoadingUtils.setDefaultEmptyImage(BufferedImage)
+
+	/** The name of the utils. */
 	public static final String NAME = "OcelotUtils";
-	/**The version of the utils.*/
-	public static final String VERSION = "1.5.6";
-	
+	/** The version of the utils. */
+	public static final String VERSION = "1.5.7";
+
 }
