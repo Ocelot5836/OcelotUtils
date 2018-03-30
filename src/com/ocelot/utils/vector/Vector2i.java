@@ -13,8 +13,8 @@ package com.ocelot.utils.vector;
  */
 public class Vector2i extends Vector2<Integer, Integer> {
 
-	private int x;
-	private int y;
+	public int x;
+	public int y;
 
 	/**
 	 * Creates a new blank vector with the positions of 0, 0.
@@ -35,8 +35,14 @@ public class Vector2i extends Vector2<Integer, Integer> {
 		set(x, y);
 	}
 
-	public Vector2i(Vector2i vector) {
-		set(vector.x, vector.y);
+	/**
+	 * Sets the values in the vector to the values of another vector.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
+	public Vector2i set(Vector2i vector) {
+		return set(vector.x, vector.y);
 	}
 
 	@Override
@@ -45,17 +51,15 @@ public class Vector2i extends Vector2<Integer, Integer> {
 		this.y = y;
 		return this;
 	}
-	
-	public Vector2i set(Vector2i vector) {
-		this.x = vector.x;
-		this.y = vector.y;
-		return this;
-	}
 
+	/**
+	 * Adds the supplied vector's positions to this vector's positions.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
 	public Vector2i add(Vector2i vector) {
-		this.x += vector.x;
-		this.y += vector.y;
-		return this;
+		return add(vector.x, vector.y);
 	}
 
 	@Override
@@ -65,10 +69,14 @@ public class Vector2i extends Vector2<Integer, Integer> {
 		return this;
 	}
 
+	/**
+	 * Adds the supplied vector's positions to this vector's positions.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
 	public Vector2i subtract(Vector2i vector) {
-		this.x -= vector.x;
-		this.y -= vector.y;
-		return this;
+		return subtract(vector.x, vector.y);
 	}
 
 	@Override
@@ -78,41 +86,30 @@ public class Vector2i extends Vector2<Integer, Integer> {
 		return this;
 	}
 
-	public double distanceFrom(Vector2i vector) {
+	/**
+	 * Gets the distance from two vectors.
+	 * 
+	 * @param vector
+	 *            The vector to get the distance from
+	 * @return The distance from this vector and the supplied vector
+	 */
+	public double distanceFrom(Vector2d vector) {
 		double dx = x - vector.x;
 		double dy = y - vector.y;
 		return Math.sqrt(dx * dx + dy * dy);
 	}
 
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public Vector2i setX(int x) {
-		this.x = x;
-		return this;
-	}
-
-	public Vector2i setY(int y) {
-		this.y = y;
-		return this;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Vector2i) {
-			Vector2i vector = (Vector2i) obj;
-			return vector.getX() == this.getX() && vector.getY() == this.getY();
+		if (obj instanceof Vector2d) {
+			Vector2d vector = (Vector2d) obj;
+			return vector.x == this.x && vector.y == this.y;
 		}
-		return false;
+		return super.equals(obj);
 	}
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + ":" + x + "," + y;
+		return getClass().getSimpleName() + "-" + x + ", " + y;
 	}
 }

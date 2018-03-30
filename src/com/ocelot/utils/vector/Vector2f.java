@@ -13,11 +13,11 @@ package com.ocelot.utils.vector;
  */
 public class Vector2f extends Vector2<Float, Float> {
 
-	private float x;
-	private float y;
+	public float x;
+	public float y;
 
 	/**
-	 * Creates a new blank vector with the positions of 0, 0.
+	 * Creates a new blank vector with the positions of 0.0, 0.0.
 	 */
 	public Vector2f() {
 		set(0.0f, 0.0f);
@@ -35,14 +35,25 @@ public class Vector2f extends Vector2<Float, Float> {
 		set(x, y);
 	}
 
+
+	/**
+	 * Creates a new vector with the values of the supplied vector.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
 	public Vector2f(Vector2f vector) {
 		set(vector.x, vector.y);
 	}
-	
+
+	/**
+	 * Sets the values in the vector to the values of another vector.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
 	public Vector2f set(Vector2f vector) {
-		this.x = vector.x;
-		this.y = vector.y;
-		return this;
+		return set(vector.x, vector.y);
 	}
 
 	@Override
@@ -52,10 +63,14 @@ public class Vector2f extends Vector2<Float, Float> {
 		return this;
 	}
 
+	/**
+	 * Adds the supplied vector's positions to this vector's positions.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
 	public Vector2f add(Vector2f vector) {
-		this.x += vector.x;
-		this.y += vector.y;
-		return this;
+		return add(vector.x, vector.y);
 	}
 
 	@Override
@@ -65,10 +80,14 @@ public class Vector2f extends Vector2<Float, Float> {
 		return this;
 	}
 
+	/**
+	 * Adds the supplied vector's positions to this vector's positions.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
 	public Vector2f subtract(Vector2f vector) {
-		this.x -= vector.x;
-		this.y -= vector.y;
-		return this;
+		return subtract(vector.x, vector.y);
 	}
 
 	@Override
@@ -78,41 +97,30 @@ public class Vector2f extends Vector2<Float, Float> {
 		return this;
 	}
 
-	public double distanceFrom(Vector2f vector) {
+	/**
+	 * Gets the distance from two vectors.
+	 * 
+	 * @param vector
+	 *            The vector to get the distance from
+	 * @return The distance from this vector and the supplied vector
+	 */
+	public double distanceFrom(Vector2d vector) {
 		double dx = x - vector.x;
 		double dy = y - vector.y;
 		return Math.sqrt(dx * dx + dy * dy);
 	}
 
-	public float getX() {
-		return x;
-	}
-
-	public float getY() {
-		return y;
-	}
-
-	public Vector2f setX(float x) {
-		this.x = x;
-		return this;
-	}
-
-	public Vector2f setY(float y) {
-		this.y = y;
-		return this;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Vector2f) {
-			Vector2f vector = (Vector2f) obj;
-			return vector.getX() == this.getX() && vector.getY() == this.getY();
+		if (obj instanceof Vector2d) {
+			Vector2d vector = (Vector2d) obj;
+			return vector.x == this.x && vector.y == this.y;
 		}
-		return false;
+		return super.equals(obj);
 	}
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + ":" + x + "," + y;
+		return getClass().getSimpleName() + "-" + x + ", " + y;
 	}
 }

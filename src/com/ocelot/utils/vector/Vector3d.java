@@ -13,12 +13,12 @@ package com.ocelot.utils.vector;
  */
 public class Vector3d extends Vector3<Double, Double, Double> {
 
-	private double x;
-	private double y;
-	private double z;
+	public double x;
+	public double y;
+	public double z;
 
 	/**
-	 * Creates a new blank vector with the positions of 0, 0.
+	 * Creates a new blank vector with the positions of 0.0, 0.0, 0.0.
 	 */
 	public Vector3d() {
 		set(0.0d, 0.0d, 0.0d);
@@ -31,13 +31,31 @@ public class Vector3d extends Vector3<Double, Double, Double> {
 	 *            The x position
 	 * @param y
 	 *            The y position
+	 * @param z
+	 *            The z position
 	 */
 	public Vector3d(double x, double y, double z) {
 		set(x, y, z);
 	}
 
+	/**
+	 * Creates a new vector with the values of the supplied vector.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
 	public Vector3d(Vector3d vector) {
 		set(vector.x, vector.y, vector.z);
+	}
+
+	/**
+	 * Sets the values in the vector to the values of another vector.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
+	public Vector3d set(Vector3d vector) {
+		return set(vector.x, vector.y, vector.z);
 	}
 
 	@Override
@@ -48,17 +66,14 @@ public class Vector3d extends Vector3<Double, Double, Double> {
 		return this;
 	}
 
-	public Vector3d set(Vector3d vector) {
-		this.x = vector.x;
-		this.y = vector.y;
-		return this;
-	}
-
+	/**
+	 * Adds the supplied vector's positions to this vector's positions.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
 	public Vector3d add(Vector3d vector) {
-		this.x += vector.x;
-		this.y += vector.y;
-		this.z += vector.z;
-		return this;
+		return add(vector.x, vector.y, vector.z);
 	}
 
 	@Override
@@ -69,11 +84,14 @@ public class Vector3d extends Vector3<Double, Double, Double> {
 		return this;
 	}
 
+	/**
+	 * Adds the supplied vector's positions to this vector's positions.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
 	public Vector3d subtract(Vector3d vector) {
-		this.x -= vector.x;
-		this.y -= vector.y;
-		this.z -= vector.z;
-		return this;
+		return subtract(vector.x, vector.y, vector.z);
 	}
 
 	@Override
@@ -84,43 +102,31 @@ public class Vector3d extends Vector3<Double, Double, Double> {
 		return this;
 	}
 
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public double getZ() {
-		return z;
-	}
-
-	public Vector3d setX(double x) {
-		this.x = x;
-		return this;
-	}
-
-	public Vector3d setY(double y) {
-		this.y = y;
-		return this;
-	}
-
-	public void setZ(double z) {
-		this.z = z;
+	/**
+	 * Gets the distance from two vectors.
+	 * 
+	 * @param vector
+	 *            The vector to get the distance from
+	 * @return The distance from this vector and the supplied vector
+	 */
+	public double distanceFrom(Vector3d vector) {
+		double dx = x - vector.x;
+		double dy = y - vector.y;
+		double dz = z - vector.z;
+		return Math.sqrt(dx * dx + dy * dy + dz * dz);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Vector3d) {
 			Vector3d vector = (Vector3d) obj;
-			return vector.getX() == this.getX() && vector.getY() == this.getY();
+			return vector.x == this.x && vector.y == this.y && vector.z == this.z;
 		}
-		return false;
+		return super.equals(obj);
 	}
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + ":" + x + "," + y + "," + z;
+		return getClass().getSimpleName() + "-" + x + ", " + y + "," + z;
 	}
 }

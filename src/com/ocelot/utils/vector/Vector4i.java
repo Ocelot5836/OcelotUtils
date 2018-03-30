@@ -11,17 +11,18 @@ package com.ocelot.utils.vector;
  * @author Ocelot5836
  * @since 1.4.6
  */
-public class Vector3i extends Vector3<Integer, Integer, Integer> {
+public class Vector4i extends Vector4<Integer, Integer, Integer, Integer> {
 
 	private int x;
 	private int y;
 	private int z;
+	private int w;
 
 	/**
-	 * Creates a new blank vector with the positions of 0, 0.
+	 * Creates a new blank vector with the positions of 0, 0, 0, 0.
 	 */
-	public Vector3i() {
-		set(0, 0, 0);
+	public Vector4i() {
+		set(0, 0, 0, 0);
 	}
 
 	/**
@@ -33,9 +34,11 @@ public class Vector3i extends Vector3<Integer, Integer, Integer> {
 	 *            The y position
 	 * @param z
 	 *            The z position
+	 * @param w
+	 *            The fourth value
 	 */
-	public Vector3i(int x, int y, int z) {
-		set(x, y, z);
+	public Vector4i(int x, int y, int z, int w) {
+		set(x, y, z, w);
 	}
 
 	/**
@@ -44,8 +47,8 @@ public class Vector3i extends Vector3<Integer, Integer, Integer> {
 	 * @param vector
 	 *            The vector to copy the values from
 	 */
-	public Vector3i(Vector3i vector) {
-		set(vector.x, vector.y, vector.z);
+	public Vector4i(Vector4i vector) {
+		set(vector.x, vector.y, vector.z, vector.w);
 	}
 
 	/**
@@ -54,15 +57,16 @@ public class Vector3i extends Vector3<Integer, Integer, Integer> {
 	 * @param vector
 	 *            The vector to copy the values from
 	 */
-	public Vector3i set(Vector3i vector) {
-		return set(vector.x, vector.y, vector.z);
+	public Vector4i set(Vector4i vector) {
+		return set(vector.x, vector.y, vector.z, vector.w);
 	}
 
 	@Override
-	public Vector3i set(Integer x, Integer y, Integer z) {
+	public Vector4i set(Integer x, Integer y, Integer z, Integer w) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		this.w = w;
 		return this;
 	}
 
@@ -72,15 +76,16 @@ public class Vector3i extends Vector3<Integer, Integer, Integer> {
 	 * @param vector
 	 *            The vector to copy the values from
 	 */
-	public Vector3i add(Vector3i vector) {
-		return add(vector.x, vector.y, vector.z);
+	public Vector4i add(Vector4i vector) {
+		return add(vector.x, vector.y, vector.z, vector.w);
 	}
 
 	@Override
-	public Vector3i add(Integer x, Integer y, Integer z) {
+	public Vector4i add(Integer x, Integer y, Integer z, Integer w) {
 		this.x += x;
 		this.y += y;
 		this.z += z;
+		this.w += w;
 		return this;
 	}
 
@@ -90,15 +95,16 @@ public class Vector3i extends Vector3<Integer, Integer, Integer> {
 	 * @param vector
 	 *            The vector to copy the values from
 	 */
-	public Vector3i subtract(Vector3i vector) {
-		return subtract(vector.x, vector.y, vector.z);
+	public Vector4i subtract(Vector4i vector) {
+		return subtract(vector.x, vector.y, vector.z, vector.w);
 	}
 
 	@Override
-	public Vector3i subtract(Integer x, Integer y, Integer z) {
+	public Vector4i subtract(Integer x, Integer y, Integer z, Integer w) {
 		this.x -= x;
 		this.y -= y;
 		this.z -= z;
+		this.w -= w;
 		return this;
 	}
 
@@ -109,24 +115,25 @@ public class Vector3i extends Vector3<Integer, Integer, Integer> {
 	 *            The vector to get the distance from
 	 * @return The distance from this vector and the supplied vector
 	 */
-	public double distanceFrom(Vector3i vector) {
+	public double distanceFrom(Vector4i vector) {
 		double dx = x - vector.x;
 		double dy = y - vector.y;
 		double dz = z - vector.z;
-		return Math.sqrt(dx * dx + dy * dy + dz * dz);
+		double dw = w - vector.w;
+		return Math.sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Vector3i) {
-			Vector3i vector = (Vector3i) obj;
-			return vector.x == this.x && vector.y == this.y && vector.z == this.z;
+		if (obj instanceof Vector4i) {
+			Vector4i vector = (Vector4i) obj;
+			return vector.x == this.x && vector.y == this.y && vector.z == this.z && vector.w == this.w;
 		}
 		return super.equals(obj);
 	}
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + "-" + x + ", " + y + "," + z;
+		return getClass().getSimpleName() + "-" + x + ", " + y + "," + z + "," + w;
 	}
 }

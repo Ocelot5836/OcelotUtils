@@ -9,7 +9,7 @@ package com.ocelot.utils.vector;
  * The basic root for a vector with 2 values.
  * 
  * @author Ocelot5836
- * @since 1.4.6
+ * @since 1.5.6
  */
 public abstract class Vector2<A, B> {
 

@@ -13,12 +13,12 @@ package com.ocelot.utils.vector;
  */
 public class Vector3f extends Vector3<Float, Float, Float> {
 
-	private float x;
-	private float y;
-	private float z;
+	public float x;
+	public float y;
+	public float z;
 
 	/**
-	 * Creates a new blank vector with the positions of 0, 0.
+	 * Creates a new blank vector with the positions of 0.0, 0.0, 0.0.
 	 */
 	public Vector3f() {
 		set(0.0f, 0.0f, 0.0f);
@@ -31,13 +31,31 @@ public class Vector3f extends Vector3<Float, Float, Float> {
 	 *            The x position
 	 * @param y
 	 *            The y position
+	 * @param z
+	 *            The z position
 	 */
 	public Vector3f(float x, float y, float z) {
 		set(x, y, z);
 	}
 
+	/**
+	 * Creates a new vector with the values of the supplied vector.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
 	public Vector3f(Vector3f vector) {
 		set(vector.x, vector.y, vector.z);
+	}
+
+	/**
+	 * Sets the values in the vector to the values of another vector.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
+	public Vector3f set(Vector3f vector) {
+		return set(vector.x, vector.y, vector.z);
 	}
 
 	@Override
@@ -48,17 +66,14 @@ public class Vector3f extends Vector3<Float, Float, Float> {
 		return this;
 	}
 
-	public Vector3f set(Vector3f vector) {
-		this.x = vector.x;
-		this.y = vector.y;
-		return this;
-	}
-
+	/**
+	 * Adds the supplied vector's positions to this vector's positions.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
 	public Vector3f add(Vector3f vector) {
-		this.x += vector.x;
-		this.y += vector.y;
-		this.z += vector.z;
-		return this;
+		return add(vector.x, vector.y, vector.z);
 	}
 
 	@Override
@@ -69,11 +84,14 @@ public class Vector3f extends Vector3<Float, Float, Float> {
 		return this;
 	}
 
+	/**
+	 * Adds the supplied vector's positions to this vector's positions.
+	 * 
+	 * @param vector
+	 *            The vector to copy the values from
+	 */
 	public Vector3f subtract(Vector3f vector) {
-		this.x -= vector.x;
-		this.y -= vector.y;
-		this.z -= vector.z;
-		return this;
+		return subtract(vector.x, vector.y, vector.z);
 	}
 
 	@Override
@@ -84,43 +102,31 @@ public class Vector3f extends Vector3<Float, Float, Float> {
 		return this;
 	}
 
-	public float getX() {
-		return x;
-	}
-
-	public float getY() {
-		return y;
-	}
-
-	public float getZ() {
-		return z;
-	}
-
-	public Vector3f setX(float x) {
-		this.x = x;
-		return this;
-	}
-
-	public Vector3f setY(float y) {
-		this.y = y;
-		return this;
-	}
-
-	public void setZ(float z) {
-		this.z = z;
+	/**
+	 * Gets the distance from two vectors.
+	 * 
+	 * @param vector
+	 *            The vector to get the distance from
+	 * @return The distance from this vector and the supplied vector
+	 */
+	public double distanceFrom(Vector3f vector) {
+		double dx = x - vector.x;
+		double dy = y - vector.y;
+		double dz = z - vector.z;
+		return Math.sqrt(dx * dx + dy * dy + dz * dz);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Vector3f) {
 			Vector3f vector = (Vector3f) obj;
-			return vector.getX() == this.getX() && vector.getY() == this.getY();
+			return vector.x == this.x && vector.y == this.y && vector.z == this.z;
 		}
-		return false;
+		return super.equals(obj);
 	}
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + ":" + x + "," + y + "," + z;
+		return getClass().getSimpleName() + "-" + x + ", " + y + "," + z;
 	}
 }
