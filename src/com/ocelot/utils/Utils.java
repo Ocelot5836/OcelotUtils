@@ -64,4 +64,43 @@ public class Utils {
 	public static void setMousePosition(int x, int y) {
 		setMousePosition(new Point(x, y));
 	}
+
+	/**
+	 * @param index
+	 *            The index of the line number search
+	 * @return The line number found at the index
+	 */
+	public static int getLineNumber(int index) {
+		if (index >= Thread.currentThread().getStackTrace().length)
+			index = 0;
+		return Thread.currentThread().getStackTrace()[index].getLineNumber();
+	}
+
+	/**
+	 * @param index
+	 *            The index of the line number search
+	 * @return The class name found at the index
+	 */
+	public static String getClass(int index) {
+		if (index >= Thread.currentThread().getStackTrace().length)
+			index = 0;
+		String name = Thread.currentThread().getStackTrace()[index].getClassName();
+		return name.substring(name.lastIndexOf(".") + 1);
+	}
+
+	/**
+	 * @return The full java version
+	 */
+	public static String getJavaVersion() {
+		return System.getProperty("java.version");
+	}
+
+	/**
+	 * @return The java version converted to an integer
+	 */
+	public static double getJavaVersioni() {
+		char[] chars = new char[5];
+		getJavaVersion().getChars(0, 4, chars, 0);
+		return Double.parseDouble((chars[0] + "") + (chars[1] + "") + (chars[2] + "") + (chars[4] + ""));
+	}
 }
