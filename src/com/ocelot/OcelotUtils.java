@@ -29,7 +29,7 @@ public class OcelotUtils implements Runnable {
 	private static OcelotUtils utils;
 
 	private OcelotUtils() {
-		pool = new ThreadPool(15);
+		pool = new ThreadPool(5);
 		utils = this;
 	}
 
