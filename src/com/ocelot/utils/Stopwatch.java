@@ -136,4 +136,11 @@ public class Stopwatch {
 	public boolean shouldRemove() {
 		return remove;
 	}
+
+	/**
+	 * @return A new stopwatch that has been started already
+	 */
+	public static Stopwatch createStarted() {
+		return new Stopwatch().start();
+	}
 }

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  * <br>
  * </br>
  * 
- * This class holds methods of math that are not java's {@link Math} class.
+ * This class holds some math methods that are not in the default java {@link Math} class.
  * 
  * @author Ocelot5836
  * @since 1.4.4
@@ -36,7 +36,7 @@ public class Maths {
 	}
 
 	/**
-	 * Gets the frequent number from a set of numbers. <em>The numbers must be sorted for this one!</em>
+	 * Gets the frequent number from a set of numbers. <em><b>The numbers must be sorted for this one!</b></em>
 	 * 
 	 * @param numbers
 	 *            The numbers to find the median of
@@ -97,6 +97,8 @@ public class Maths {
 	 * @return The mode of the numbers specified
 	 */
 	public static List<Integer> getModes(final List<Integer> numbers) {
+		if(Utils.getJavaVersioni() < 8)
+			throw new IllegalArgumentException("You cannot use Maths#getModes(List<Integer>) unless your java version is 8 or above!");
 		final Map<Integer, Long> countFrequencies = numbers.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 		final long maxFrequency = countFrequencies.values().stream().mapToLong(count -> count).max().orElse(-1);
 

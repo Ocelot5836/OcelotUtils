@@ -22,12 +22,9 @@ public class StopwatchManager {
 	 * Updates all the stopwatches.
 	 */
 	public static void update() {
-		for (Stopwatch watch : stopwatches) {
-			watch.update();
-		}
-
 		for (int i = 0; i < stopwatches.size(); i++) {
 			Stopwatch watch = stopwatches.get(i);
+			watch.update();
 			if (watch.shouldRemove()) {
 				stopwatches.remove(watch);
 				i--;

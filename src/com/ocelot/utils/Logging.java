@@ -26,11 +26,19 @@ public class Logging {
 	 * @return The logger that was found by the specified name
 	 */
 	public static Logger getLogger(String name) {
-		if (loggers.containsKey(name)) {
-			return loggers.get(name);
-		} else {
+		if (!loggers.containsKey(name))
 			loggers.put(name, new Logger(name));
-			return loggers.get(name);
-		}
+		return loggers.get(name);
+	}
+
+	/**
+	 * Removes a logger from memory.
+	 * 
+	 * @param name
+	 *            The name of the logger to remove
+	 */
+	public static void removeLogger(String name) {
+		if (loggers.containsKey(name))
+			loggers.remove(name);
 	}
 }

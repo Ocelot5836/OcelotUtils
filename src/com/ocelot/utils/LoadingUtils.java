@@ -177,7 +177,7 @@ public class LoadingUtils {
 	 * @return Whether or not the image was loaded
 	 */
 	public static boolean isImageLoaded(String key) {
-		return LOADED_IMAGES.get(key) != null;
+		return LOADED_IMAGES.containsKey(key);
 	}
 
 	/**
@@ -192,7 +192,7 @@ public class LoadingUtils {
 	 * 
 	 * @param defaultEmptyImage
 	 *            The new image to set it to
-	 * @deprecated This is redundant. The value of {@link #defaultEmptyImage} is public so just modify it directly.
+	 * @deprecated This is redundant. The value of {@link #defaultEmptyImage} is public so just modify it directly. Will be removed in 1.6
 	 */
 	public static void setDefaultEmptyImage(BufferedImage image) {
 		LoadingUtils.defaultEmptyImage = image;
